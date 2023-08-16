@@ -1,0 +1,22 @@
+.bi {
+  font-size: 45px;
+}
+.cart-container {
+  display: flex;
+  position: relative;
+  padding: 10px;
+}
+
+.number {
+  position: absolute;
+  left: 80%;
+  top: 25%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: blue;
+  display: flex;
+  width: 20px;
+  height: 20px;
+}
