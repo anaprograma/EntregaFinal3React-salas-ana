@@ -26,7 +26,9 @@ const ItemDetail = () => {
   }, [id]);
 
   return (
-    <div className="itemdetail">{item ? <ItemList data={item} /> : null}</div>
+    <div className="itemdetail">
+      {item ? <ItemList data={item} description={true} /> : null}
+    </div>
   );
 };
 
