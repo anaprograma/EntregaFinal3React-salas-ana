@@ -1,9 +1,11 @@
 import React from "react";
 import "./style.css";
-
+import { useState } from "react";
 import AddCart from "../AddCart";
 
 const ItemList = ({ data, description }) => {
+  const [total, setTotal] = useState(0);
+
   return (
     <div className="contain">
       {description ? (
@@ -23,13 +25,9 @@ const ItemList = ({ data, description }) => {
                 <h6 className="card-text">Price: {data.price}</h6>
 
                 <div className="d-flex justify-content-between align-items-center">
-                  <AddCart></AddCart>
-                  <button className="button btn btn-link">
-                    <span className="buy">Add to Cart</span>
-                    <i className="bi bi-bag-heart-fill"></i>
-                  </button>
+                  {/* //---------aca esta la logina de la suma para el cart--------------- */}
+                  <AddCart price={data.price}></AddCart>
                 </div>
-                <h6 className="card-text">Subtotal: {data.price}</h6>
               </div>
             </div>
           </div>
