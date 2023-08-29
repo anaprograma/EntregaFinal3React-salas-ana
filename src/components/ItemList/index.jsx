@@ -1,11 +1,9 @@
 import React from "react";
 import "./style.css";
-import { useState } from "react";
+
 import AddCart from "../AddCart";
 
 const ItemList = ({ data, description }) => {
-  const [total, setTotal] = useState(0);
-
   return (
     <div className="contain">
       {description ? (
@@ -20,13 +18,13 @@ const ItemList = ({ data, description }) => {
             </div>
             <div className="col-md-7 col-127">
               <div className="card-body">
-                <h5 className="card-title">Name:{data.name}</h5>
-                <h6 className="card-text">Description:{data.description}</h6>
-                <h6 className="card-text">Price: {data.price}</h6>
+                <h5 className="card-title">Name: {data.name}</h5>
+                <h5 className="card-text">Price: {data.price}</h5>
+                <h5 className="text card-text">Product: {data.category}</h5>
+                <h5 className="card-text">Description: {data.description}</h5>
 
                 <div className="d-flex justify-content-between align-items-center">
-                  {/* //---------aca esta la logina de la suma para el cart--------------- */}
-                  <AddCart price={data.price}></AddCart>
+                  <AddCart></AddCart>
                 </div>
               </div>
             </div>
@@ -37,9 +35,12 @@ const ItemList = ({ data, description }) => {
           <img src={data.img} className="card-img-top " alt={data.name} />
 
           <div className="card-body">
-            <h5 className="text card-title">Name:{data.name}</h5>
+            <h5 className="text card-title">Name: {data.name}</h5>
             <h5 className="text">Price: {data.price}</h5>
-            <h5 className="text card-text">Product:{data.category}</h5>
+            <h5 className="text card-text">Product: {data.category}</h5>
+            <button type="button" className="btn btn-outline-dark">
+              Ver más
+            </button>
           </div>
         </div>
       )}

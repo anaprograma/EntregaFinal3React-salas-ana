@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 
 import ItemList from "../ItemList";
 import { products } from "../../mocks/data";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function itemListContainer() {
   const [productData, setProductData] = useState([]);
+
   useEffect(() => {
     const prodData = async () => {
       try {
-        await new Promise((res) => res());
+        await new Promise((res) => setTimeout(res, 1000));
         setProductData(products);
       } catch (error) {
         console.log(error);

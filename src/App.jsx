@@ -2,17 +2,16 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-// import "bootstrap/dist/js/bootstrap.bundle";
+
 //-----component----
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 //-----pages----
 import Inicio from "./pages/Inicio";
-import Remeras from "./pages/Remeras";
-import Pantalones from "./pages/Pantalones";
-import Sweaters from "./pages/Sweaters";
+
 import ItemDetail from "./components/ItemDetail";
+import ProductCategory from "./pages/ProductCategory";
 function App() {
   return (
     <div className="page-container">
@@ -23,9 +22,11 @@ function App() {
 
             <Routes>
               <Route path="/" element={<Inicio />} />
-              <Route path="/remeras" element={<Remeras />} />
-              <Route path="/Pantalones" element={<Pantalones />} />
-              <Route path="/sweaters" element={<Sweaters />} />
+              <Route
+                path="/productos/:category"
+                element={<ProductCategory />}
+              />
+
               <Route path="/Itemdetail/:id" element={<ItemDetail />} />
             </Routes>
           </div>

@@ -15,7 +15,7 @@ const AddCart = ({ price }) => {
 
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center">
+      {/* <div className="d-flex justify-content-between align-items-center">
         <button onClick={sum} className="buttons btn btn-link">
           <i className="bi bi-plus"></i>
         </button>
@@ -28,7 +28,11 @@ const AddCart = ({ price }) => {
           <i className="bi bi-bag-heart-fill"></i>
         </button>
       </div>
-      <h6 className="card-text">Subtotal: {subtotal}</h6>
+      <h6 className="card-text">Subtotal: {subtotal}</h6> */}
+      <button className="button btn btn-link">
+        <span className="buy">Add to Cart</span>
+        <i className="bi bi-bag-heart-fill"></i>
+      </button>
     </>
   );
 };

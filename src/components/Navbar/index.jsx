@@ -49,17 +49,17 @@ function Navbar() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/remeras">
+                  <Link className="dropdown-item" to="/productos/remera">
                     Remeras
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/pantalones">
+                  <Link className="dropdown-item" to="/productos/pantalon">
                     Pantalones
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/sweaters">
+                  <Link className="dropdown-item" to="/productos/sweater">
                     Sweaters
                   </Link>
                 </li>
