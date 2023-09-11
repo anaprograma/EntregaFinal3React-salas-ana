@@ -7,7 +7,7 @@ export const products = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. ipsum dolor sit amet consectetur adipisicing elit. Magni",
     category: "remera",
     quantity: "5",
-    img: "https://i.postimg.cc/cJX3J50c/remera-mujer-1.jpg",
+    img: "https://i.postimg.cc/ZR54Dtn8/remera-b.jpg",
   },
   {
     id: "12",
