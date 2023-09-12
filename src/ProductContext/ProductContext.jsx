@@ -1,30 +1,36 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { products } from "../../mocks/data";
+
+// -----firebase-------
+import { query, collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/firebaseConfig";
 
 const ProductContext = createContext();
 
-export function useProductContext() {
-  return useContext(ProductContext);
-}
-
-export function ProductProvider({ children }) {
-  const [productData, setProductData] = useState([]);
+export const ProductProvider = ({ children }) => {
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await new Promise((res) => setTimeout(res, 1000));
-        setProductData(products);
-      } catch (error) {
-        console.log(error);
-      }
+    const getProd = async () => {
+      const q = query(collection(db, "products"));
+      const docs = [];
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+
+      setProduct(docs);
     };
-    fetchData();
+    getProd();
   }, []);
 
   return (
-    <ProductContext.Provider value={productData}>
+    <ProductContext.Provider value={{ product }}>
       {children}
     </ProductContext.Provider>
   );
+};
+
+export function useProductContext() {
+  return useContext(ProductContext);
 }

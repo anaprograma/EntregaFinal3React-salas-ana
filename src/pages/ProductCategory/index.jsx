@@ -1,28 +1,38 @@
 import React from "react";
 import ItemList from "../../components/ItemList";
 import { useEffect, useState } from "react";
-import { products } from "../../mocks/data";
+import { useProductContext } from "../../ProductContext/ProductContext";
 import { Link, useParams } from "react-router-dom";
+import Spinner from "../../components/Spinner";
 import "./style.css";
 
 const ProductCategory = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const { product } = useProductContext();
   const [categories, setCategories] = useState([]);
   const { category } = useParams();
+  console.log(product);
 
   useEffect(() => {
-    const filterProd = async () => {
+    const filterProd = () => {
       try {
-        await new Promise((res) => setTimeout(res, 1000));
-        const productFiltered = products.filter(
-          (product) => product.category === category
-        );
-        setCategories(productFiltered);
+        setTimeout(() => {
+          const productFiltered = product.filter(
+            (prod) => prod.category === category
+          );
+          setCategories(productFiltered);
+          setIsLoading(false);
+        }, 1000);
       } catch (error) {
         console.log(error);
+        setIsLoading(false);
       }
     };
     filterProd();
-  }, [category]);
+  }, [category, product]);
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="product-category">

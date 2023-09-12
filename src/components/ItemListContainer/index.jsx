@@ -1,37 +1,33 @@
 import "./style.css";
-import { useEffect, useState } from "react";
+
+import { useProductContext } from "../../ProductContext/ProductContext";
 
 import ItemList from "../ItemList";
-
+import Spinner from "../Spinner";
 import { Link } from "react-router-dom";
-// -----firebase-------
-import { query, collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
+import { useState, useEffect } from "react";
 
-function itemListContainer() {
-  const [productData, setProductData] = useState([]);
+function ItemListContainer() {
+  const { product } = useProductContext();
+  const [isLoading, setIsLoading] = useState(true); // control spinner
 
   useEffect(() => {
-    const getProd = async () => {
-      const q = query(collection(db, "products"));
-      const docs = [];
-      const querySnapshot = await getDocs(q);
-
-      querySnapshot.forEach((doc) => {
-        docs.push({ ...doc.data(), id: doc.id });
-      });
-
-      setProductData(docs);
-    };
-    getProd();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }, []);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <div className="container-itemlist">
-      {productData.map((product) => {
+      {product.map((prod) => {
         return (
-          <div key={product.id}>
-            <Link to={`/ItemDetail/${product.id}`}>
-              <ItemList data={product} />
+          <div key={prod.id}>
+            <Link to={`/ItemDetail/${prod.id}`}>
+              <ItemList data={prod} />
             </Link>
           </div>
         );
@@ -39,4 +35,5 @@ function itemListContainer() {
     </div>
   );
 }
-export default itemListContainer;
+
+export default ItemListContainer;
