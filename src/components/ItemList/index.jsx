@@ -1,9 +1,13 @@
 import React from "react";
 import "./style.css";
-
-import AddCart from "../AddCart";
+import { useState } from "react";
 
 const ItemList = ({ data, description }) => {
+  //logica del button para agregar al carrito
+  const [cart, setCart] = useState([]);
+  const addToCart = (item) => {
+    setCart([...cart, item]);
+  };
   return (
     <div className="contain">
       {description ? (
@@ -24,7 +28,13 @@ const ItemList = ({ data, description }) => {
                 <h5 className="card-text">Description: {data.description}</h5>
 
                 <div className="d-flex justify-content-between align-items-center">
-                  <AddCart></AddCart>
+                  <button
+                    onClick={() => addToCart(data)}
+                    className="button btn btn-link"
+                  >
+                    <span className="buy">Add to Cart</span>
+                    <i className="bi bi-bag-heart-fill"></i>
+                  </button>
                 </div>
               </div>
             </div>

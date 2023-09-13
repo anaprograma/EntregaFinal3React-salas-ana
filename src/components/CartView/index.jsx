@@ -3,7 +3,7 @@ import "./style.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
-const CartView = () => {
+const CartView = ({ data, cartItems }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -26,7 +26,7 @@ const CartView = () => {
         onClick={handleShow}
       >
         <i className="cart bi bi-cart3"></i>
-        <span className="number">4</span>
+        <span className="number">{cartItems.lenght}</span>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -36,11 +36,13 @@ const CartView = () => {
         <Modal.Body>
           <div className="container text-left">
             <div className="row">
-              <div className="col-3">Column</div>
+              <div className="col-3">
+                <img src={data.img} alt={data.name} />
+              </div>
               <div className="col-9">
                 <div className="row">
                   <div className="col-10">
-                    <div>nombre producto </div>
+                    <div>{data.name} </div>
                     <button onClick={sum} className="buttons btn btn-link">
                       <i className="bi bi-plus"></i>
                     </button>
@@ -48,7 +50,7 @@ const CartView = () => {
                     <button onClick={minus} className="buttons btn btn-link">
                       <i className="bi bi-dash"></i>
                     </button>
-                    <div>Precio: 12344 </div>
+                    <div>Precio:{data.price} </div>
                   </div>
                   <div className="col-2">
                     {" "}
