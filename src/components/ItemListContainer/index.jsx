@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { useProductContext } from "../../ProductContext/ProductContext";
+import { useProductContext } from "../../Context/ProductContext";
 
 import ItemList from "../ItemList";
 import Spinner from "../Spinner";
@@ -27,7 +27,7 @@ function ItemListContainer() {
         return (
           <div key={prod.id}>
             <Link to={`/ItemDetail/${prod.id}`}>
-              <ItemList data={prod} />
+              <ItemList data={prod} stock={prod.stock} />
             </Link>
           </div>
         );

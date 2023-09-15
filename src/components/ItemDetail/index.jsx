@@ -1,7 +1,7 @@
 import React from "react";
 import ItemList from "../ItemList";
 import { useEffect, useState } from "react";
-import { useProductContext } from "../../ProductContext/ProductContext";
+import { useProductContext } from "../../Context/ProductContext";
 import "./style.css";
 import Spinner from "../Spinner";
 import { useParams } from "react-router-dom";

@@ -1,12 +1,18 @@
-import React from "react";
-import "./style.css";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import "./itemList.css";
+import Counter from "../Counter";
+import { CartContext } from "../../Context/CartContext";
 
-const ItemList = ({ data, description }) => {
-  //logica del button para agregar al carrito
-  const [cart, setCart] = useState([]);
-  const addToCart = (item) => {
-    setCart([...cart, item]);
+const ItemList = ({ data, description, stock }) => {
+  // console.log(stock);
+
+  const [quantityadd, setQuantityadd] = useState(0);
+  const { addToCart } = useContext(CartContext);
+
+  const handleAdd = (quantity) => {
+    setQuantityadd(quantity);
+
+    addToCart(data, quantity);
   };
   return (
     <div className="contain">
@@ -27,15 +33,9 @@ const ItemList = ({ data, description }) => {
                 <h5 className="text card-text">Product: {data.category}</h5>
                 <h5 className="card-text">Description: {data.description}</h5>
 
-                <div className="d-flex justify-content-between align-items-center">
-                  <button
-                    onClick={() => addToCart(data)}
-                    className="button btn btn-link"
-                  >
-                    <span className="buy">Add to Cart</span>
-                    <i className="bi bi-bag-heart-fill"></i>
-                  </button>
-                </div>
+                <Counter stock={stock} onadd={handleAdd} />
+
+                {/* //ACA VA EL BOTON CONTADOR */}
               </div>
             </div>
           </div>

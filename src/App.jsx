@@ -6,36 +6,42 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 //-----component----
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
+import Cart from "./components/Cart";
+import ItemDetail from "./components/ItemDetail";
 //-----pages----
 import Inicio from "./pages/Inicio";
-
-import ItemDetail from "./components/ItemDetail";
 import ProductCategory from "./pages/ProductCategory";
-import { ProductProvider } from "./ProductContext/ProductContext";
+
+//-----contextProviders----------
+import { ProductProvider } from "./Context/ProductContext";
+
+import { CartProvider } from "./Context/CartContext";
 function App() {
   return (
     <ProductProvider>
-      <div className="page-container">
-        <div className="content-wrap">
-          <Router>
-            <div className="main">
-              <Navbar></Navbar>
+      <CartProvider>
+        <div className="page-container">
+          <div className="content-wrap">
+            <Router>
+              <div className="main">
+                <Navbar></Navbar>
 
-              <Routes>
-                <Route path="/" element={<Inicio />} />
-                <Route
-                  path="/productos/:category"
-                  element={<ProductCategory />}
-                />
+                <Routes>
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/" element={<Inicio />} />
+                  <Route
+                    path="/productos/:category"
+                    element={<ProductCategory />}
+                  />
 
-                <Route path="/Itemdetail/:id" element={<ItemDetail />} />
-              </Routes>
-            </div>
-          </Router>
+                  <Route path="/Itemdetail/:id" element={<ItemDetail />} />
+                </Routes>
+              </div>
+            </Router>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </CartProvider>
     </ProductProvider>
   );
 }

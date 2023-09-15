@@ -1,7 +1,7 @@
 import React from "react";
 import ItemList from "../../components/ItemList";
 import { useEffect, useState } from "react";
-import { useProductContext } from "../../ProductContext/ProductContext";
+import { useProductContext } from "../../Context/ProductContext";
 import { Link, useParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import "./style.css";
@@ -11,7 +11,6 @@ const ProductCategory = () => {
   const { product } = useProductContext();
   const [categories, setCategories] = useState([]);
   const { category } = useParams();
-  console.log(product);
 
   useEffect(() => {
     const filterProd = () => {
@@ -33,7 +32,7 @@ const ProductCategory = () => {
   if (isLoading) {
     return <Spinner />;
   }
-
+  console.log(product);
   return (
     <div className="product-category">
       {categories.map((product) => (

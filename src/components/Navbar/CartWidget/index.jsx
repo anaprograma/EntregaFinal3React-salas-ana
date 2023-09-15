@@ -1,37 +1,25 @@
 import "./style.css";
-import CartView from "../../CartView";
-
-import { useState, useEffect } from "react";
-import { useProductContext } from "../../../ProductContext/ProductContext";
-import { useParams } from "react-router-dom";
+import React from "react";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 function CartWidget() {
-  const { product } = useProductContext();
-  let { id } = useParams();
-  const [item, setItem] = useState(null);
-
-  useEffect(() => {
-    const itemData = async () => {
-      const selectedItem = product.find((prod) => prod.id === id);
-      setItem(selectedItem);
-    };
-    itemData();
-  }, [id]);
+  // const totalItemsInCart = cart.reduce(
+  //   (total, item) => total + item.quantity,
+  //   0
+  // );
 
   return (
-    <div className="cartv">
-      {item ? (
-        <>
-          <CartView data={item} cartItems={cartItems} />
-        </>
-      ) : null}
-    </div>
+    <Link to={"/cart"}>
+      <div className="cartv">
+        {" "}
+        <Button className="cart-container" variant="light" size="lg">
+          <i className="cart bi bi-cart3"></i>
+          <span className="number"></span>
+        </Button>
+      </div>
+    </Link>
   );
-}
-{
-  /* <div className="itemdetail">
-      {item ? <ItemList data={item} description={true} /> : null}
-    </div> */
 }
 
 export default CartWidget;

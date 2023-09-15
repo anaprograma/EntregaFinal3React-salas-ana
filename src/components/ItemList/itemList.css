@@ -18,10 +18,29 @@
 }
 .buy {
   flex: 1;
+  color: black;
 }
 
 .button {
   margin-left: 5px;
   display: flex;
   align-items: center;
+}
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttons {
+  color: black;
+}
+.addCart {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  text-decoration: none;
+}
+.color {
+  color: black;
 }
