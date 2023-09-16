@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Counter = ({ stock, onadd }) => {
-  console.log(stock);
   const [count, setCount] = useState(1);
   const sum = () => {
     if (count < stock) {

@@ -37,7 +37,9 @@ const ItemDetail = () => {
 
   return (
     <div className="itemdetail">
-      {item ? <ItemList data={item} description={true} /> : null}
+      {item ? (
+        <ItemList data={item} description={true} stock={item.stock} />
+      ) : null}
     </div>
   );
 };
