@@ -6,43 +6,35 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 //-----component----
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Cart from "./components/Cart";
-import ItemDetail from "./components/ItemDetail";
+
+// import ItemDetail from "./components/ItemDetail";
 //-----pages----
-import Inicio from "./pages/Inicio";
-import ProductCategory from "./pages/ProductCategory";
+
+import ItemListContainer from "./components/ItemListContainer";
+import ItemDetailContainer from "./components/ItemDetailContainer";
 
 //-----contextProviders----------
-import { ProductProvider } from "./Context/ProductContext";
 
-import { CartProvider } from "./Context/CartContext";
+// import { CartProvider } from "./Context/CartContext";
 function App() {
   return (
-    <ProductProvider>
-      <CartProvider>
-        <div className="page-container">
-          <div className="content-wrap">
-            <Router>
-              <div className="main">
-                <Navbar></Navbar>
+    <div className="page-container">
+      <div className="content-wrap">
+        <Router>
+          <div className="main">
+            <Navbar></Navbar>
 
-                <Routes>
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/" element={<Inicio />} />
-                  <Route
-                    path="/productos/:category"
-                    element={<ProductCategory />}
-                  />
+            <Routes>
+              <Route path="/item/:id" element={<ItemDetailContainer />} />
+              <Route path="/" element={<ItemListContainer />} />
 
-                  <Route path="/Itemdetail/:id" element={<ItemDetail />} />
-                </Routes>
-              </div>
-            </Router>
+              {/* <Route path="/Itemdetail/:id" element={<ItemDetail />} /> */}
+            </Routes>
           </div>
-          <Footer />
-        </div>
-      </CartProvider>
-    </ProductProvider>
+        </Router>
+      </div>
+      <Footer />
+    </div>
   );
 }
 
