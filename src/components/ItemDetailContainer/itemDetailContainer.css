@@ -1,0 +1,7 @@
+.container-itemdetail {
+  display: flex;
+}
+a {
+  text-decoration: none;
+  list-style: none;
+}

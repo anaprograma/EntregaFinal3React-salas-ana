@@ -49,19 +49,19 @@ function Navbar() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  {/* <Link className="dropdown-item" to="/productos/remera">
+                  <Link className="dropdown-item" to="/product/remera">
                     Remeras
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/productos/pantalon">
+                  <Link className="dropdown-item" to="/product/pantalon">
                     Pantalones
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/productos/sweater">
+                  <Link className="dropdown-item" to="/product/sweater">
                     Sweaters
-                  </Link> */}
+                  </Link>
                 </li>
               </ul>
             </li>
