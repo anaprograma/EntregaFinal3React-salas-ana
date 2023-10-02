@@ -16,7 +16,8 @@ const CheckOut = () => {
       cliente: data,
       productos: cart,
     };
-    console.log(pedido);
+
+    // pasar los datos a la base de datos
     const pedidosRef = collection(db, "pedidos");
     addDoc(pedidosRef, pedido).then((doc) => {
       setPedidoid(doc.id);
