@@ -1,84 +1,58 @@
 import React from "react";
 import "./checkout.css";
-import { Formik } from "formik";
-import * as yup from "yup";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
-const yupSchema = yup
-  .object({
-    name: yup.string().min(2).max(12).required(),
-    surname: yup.string().min(2).max(12).required(),
-    email: yup.string().email().required(),
-  })
-  .required();
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebase/firebaseConfig";
+import { useCart } from "../../Context/CartContext";
 
 const CheckOut = () => {
-  const [orderNumber, setOrderNumber] = useState(null);
+  const { cart, clearCart } = useCart();
+  const [pedidoid, setPedidoid] = useState("");
   //HANDLE ON SUBMIT
-  const submitHandler = (values, resetForm) => {
-    console.log(values);
-
-    resetForm();
+  const { register, handleSubmit } = useForm();
+  const pedidos = (data) => {
+    const pedido = {
+      cliente: data,
+      productos: cart,
+    };
+    console.log(pedido);
+    const pedidosRef = collection(db, "pedidos");
+    addDoc(pedidosRef, pedido).then((doc) => {
+      setPedidoid(doc.id);
+      clearCart();
+    });
   };
+  if (pedidoid) {
+    return (
+      <div className="container">
+        <h2>Gracias por tu compra</h2>
+        <p>Su numero de orden es : {pedidoid}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="container-form">
-      <Formik
-        initialValues={{ name: "", surname: "", email: "" }}
-        onSubmit={(values, { resetForm }) => submitHandler(values, resetForm)}
-        validationSchema={yupSchema}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isValid,
-          dirty,
-        }) => (
-          <form className="form-checkout row g-3" onSubmit={handleSubmit}>
-            <div className="form-floating ">
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                id="floatingPassword"
-                placeholder="Nombre"
-                value={values.name}
-                onChange={handleChange}
-              />
-              <label htmlFor="floatingPassword">Nombre</label>
-            </div>
-            <div className="form-floating">
-              <input
-                type="text"
-                name="surname"
-                className="form-control"
-                id="floatingSurname"
-                placeholder="Apellido"
-                value={values.apellido}
-                onChange={handleChange}
-              />
-              <label htmlFor="floatingPassword">Apellido</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input
-                name="email"
-                type="email"
-                className="form-control"
-                id="floatingInput"
-                placeholder="name@example.com"
-                value={values.email}
-                onChange={handleChange}
-              />
-              <label htmlFor="floatingInput">Email address</label>
-            </div>
-            <button className="btn btn-primary" type="submit">
-              Submit form
-            </button>
-          </form>
-        )}
-      </Formik>
+      <h1>Finalizar compra</h1>
+      <form className="form" onSubmit={handleSubmit(pedidos)}>
+        <input
+          typeof="text"
+          placeholder="Ingresar nombre"
+          {...register("nombre")}
+        ></input>
+        <input
+          typeof="text"
+          placeholder="Ingresar apellido"
+          {...register("apellido")}
+        ></input>
+        <input
+          typeof="text"
+          placeholder="Ingresar email"
+          {...register("email")}
+        ></input>
+        <button typeof="submit">finalizar</button>
+      </form>
     </div>
   );
 };
